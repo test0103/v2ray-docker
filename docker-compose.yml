@@ -5,7 +5,7 @@ services:
         image: haproxy:lts
         container_name: haproxy
         restart: always
-        command: touch /run/haproxy/admin.sock
+        command: mkdir /run/haproxy && touch /run/haproxy/admin.sock
         volumes: 
             - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
             - ./cert/cert.pem:/etc/ssl/private/cert.pem
