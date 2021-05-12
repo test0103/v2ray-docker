@@ -5,7 +5,7 @@ services:
         image: haproxy:lts
         container_name: haproxy
         restart: always
-        command: mkdir /run/haproxy
+        command: [mkdir /run/haproxy],["/usr/sbin/haproxy","-W","-db","-f","/etc/haproxy/haproxy.cfg"]
         volumes: 
             - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
             - ./cert/cert.pem:/etc/ssl/private/cert.pem
