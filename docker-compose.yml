@@ -1,0 +1,53 @@
+version: '3.9'
+#服务
+services:
+    certbot:
+        image: certbot/certbot
+    haproxy:
+        image: haproxy:lts
+        container_name: haproxy
+        restart: always
+        volumes: 
+            - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+            - ./cert/cert.pem:/etc/ssl/private/cert.pem
+        networks: 
+            v2ray:
+                ipv4_address: 10.0.0.10
+        ports: 
+            - "80:80"
+            - "443:443"
+    #Done
+    caddy:
+        image: caddy:2.4.0-alpine
+        container_name: caddy
+        restart: always
+        volumes:
+            - ./caddy/html:/data
+            - ./Caddyfile:/etc/caddy/Caddyfile
+        networks: 
+            v2ray:
+                ipv4_address: 10.0.0.20
+        depends_on:
+            - haproxy
+    #Done
+    v2ray:
+        image: v2ray/official
+        container_name: v2ray-core
+        restart: always
+        volumes:
+            - ./v2ray/config/config.json:/etc/v2ray/config.json
+            - ./v2ray/log:/var/log/v2ray
+        networks: 
+            v2ray:
+                ipv4_address: 10.0.0.30
+        depends_on: 
+            - caddy
+#网络
+networks: 
+    v2ray:
+        driver: bridge
+        ipam: 
+            driver: default
+            config: 
+                - subnet: 10.0.0.0/24
+                  gateway: 10.0.0.1
