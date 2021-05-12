@@ -25,6 +25,8 @@ services:
         networks: 
             v2ray:
                 ipv4_address: 10.0.0.20
+        ports: 
+            - "8080"
         depends_on:
             - haproxy
     #Done
@@ -38,6 +40,8 @@ services:
         networks: 
             v2ray:
                 ipv4_address: 10.0.0.30
+        ports: 
+            - "40001"
         depends_on: 
             - caddy
 #网络
