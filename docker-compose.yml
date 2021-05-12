@@ -23,7 +23,7 @@ services:
         restart: always
         volumes:
             - ./caddy/html:/data
-            - ./Caddyfile:/etc/caddy/Caddyfile
+            - ./caddy/Caddyfile:/etc/caddy/Caddyfile
         networks: 
             v2ray:
                 ipv4_address: 10.0.0.20
