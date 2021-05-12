@@ -1,4 +1,2 @@
-http://proxy.aliyun.hk.c.hicn.site:8080{
-    root /var/www/html
-}
-    
+localhost:8080
+root * /data
