@@ -38,6 +38,8 @@ services:
         networks: 
             v2ray:
                 ipv4_address: 10.0.0.30
+        ports: 
+            - 40001:40001
         depends_on: 
             - caddy
 #网络
