@@ -25,6 +25,7 @@ services:
         networks: 
             v2ray:
                 ipv4_address: 10.0.0.20
+        ports: 8080:8080
         depends_on:
             - haproxy
     #Done
