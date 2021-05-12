@@ -1,2 +1,3 @@
-localhost:8080
-root * /data
+http://proxy.aliyun.hk.c.hicn.site:8080 {
+    root /data
+}
