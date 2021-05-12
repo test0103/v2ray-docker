@@ -1,8 +1,6 @@
 version: '3.9'
 #服务
 services:
-    certbot:
-        image: certbot/certbot
     haproxy:
         image: haproxy:lts
         container_name: haproxy
